@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ayushi Mishra | PHP Backend Developer</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --blue:#4A90D9;--blue2:#7AB8F5;--blue3:#185FA5;--blue4:#E8F4FD;
+  --bg:#f0f6ff;--bg2:#ffffff;--text:#0d1b2e;--text2:#4a6080;
+  --border:rgba(74,144,217,0.18);
+}
+body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--text);background:var(--bg);overflow-x:hidden;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+@keyframes rotateSlow{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+@keyframes particleFloat{0%{opacity:0;transform:translateY(0);}20%{opacity:1;}80%{opacity:0.8;}100%{opacity:0;transform:translateY(-130px) translateX(20px);}}
+@keyframes countBounce{0%{opacity:0;transform:scale(0.6);}70%{transform:scale(1.1);}100%{opacity:1;transform:scale(1);}}
+@keyframes shimmer{0%{left:-100%;}100%{left:200%;}}
+@keyframes glowBlue{0%,100%{box-shadow:0 0 0 0 rgba(74,144,217,0);}50%{box-shadow:0 0 0 8px rgba(74,144,217,0.12);}}
+
+.hidden{opacity:0;transform:translateY(22px);}
+.reveal{transition:opacity 0.7s ease,transform 0.7s ease;opacity:1;transform:none;}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 2.5rem;position:sticky;top:0;z-index:100;background:rgba(240,246,255,0.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+.logo{font-size:20px;font-weight:700;color:var(--blue3);letter-spacing:3px;position:relative;}
+.logo::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:var(--blue);transition:width 0.4s;}
+.logo:hover::after{width:100%;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-size:13px;color:var(--text2);text-decoration:none;transition:color 0.3s;position:relative;padding-bottom:3px;cursor:pointer;}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:50%;width:0;height:2px;background:var(--blue);transition:all 0.3s;transform:translateX(-50%);border-radius:2px;}
+.nav-links a:hover{color:var(--blue3);}
+.nav-links a:hover::after{width:100%;}
+
+.hero{min-height:540px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:5rem 2rem;position:relative;overflow:hidden;background:#0d1b2e;}
+.ring{position:absolute;border-radius:50%;border:1px solid rgba(74,144,217,0.07);animation:rotateSlow linear infinite;pointer-events:none;}
+.ring1{width:700px;height:700px;top:-220px;left:-220px;animation-duration:55s;}
+.ring2{width:480px;height:480px;bottom:-130px;right:-130px;animation-duration:38s;animation-direction:reverse;}
+.ring3{width:260px;height:260px;top:60px;right:100px;animation-duration:25s;}
+.particle{position:absolute;border-radius:50%;background:rgba(74,144,217,0.5);animation:particleFloat linear infinite;}
+
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(74,144,217,0.1);color:var(--blue2);font-size:12px;padding:6px 20px;border-radius:20px;margin-bottom:1.5rem;border:1px solid rgba(74,144,217,0.25);position:relative;z-index:1;letter-spacing:1px;animation:fadeUp 0.6s ease 0.2s both;}
+.badge-dot{width:7px;height:7px;background:#7fff7f;border-radius:50%;animation:pulse 1.5s ease infinite;}
+.hero-avatar{width:96px;height:96px;border-radius:50%;background:rgba(74,144,217,0.1);border:2px solid rgba(74,144,217,0.35);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:var(--blue2);margin-bottom:1.5rem;position:relative;z-index:1;animation:fadeUp 0.6s ease 0.1s both,glowBlue 3s ease infinite;}
+.hero h1{font-size:56px;font-weight:700;color:#ffffff;margin-bottom:0.5rem;position:relative;z-index:1;line-height:1.1;animation:fadeUp 0.7s ease 0.3s both;}
+.hero h1 span{color:var(--blue2);}
+.hero-role{font-size:14px;color:rgba(255,255,255,0.55);margin-bottom:2rem;position:relative;z-index:1;letter-spacing:0.5px;animation:fadeUp 0.7s ease 0.4s both;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:2.5rem;position:relative;z-index:1;animation:fadeUp 0.7s ease 0.5s both;}
+.htag{background:rgba(74,144,217,0.08);color:var(--blue2);font-size:12px;padding:6px 16px;border-radius:20px;border:1px solid rgba(74,144,217,0.2);display:flex;align-items:center;gap:6px;transition:all 0.3s;cursor:default;}
+.htag:hover{background:rgba(74,144,217,0.18);border-color:rgba(74,144,217,0.4);transform:translateY(-3px);}
+.hero-btns{display:flex;gap:14px;position:relative;z-index:1;animation:fadeUp 0.7s ease 0.6s both;}
+.btn-p{background:var(--blue);color:#fff;border:none;padding:13px 28px;border-radius:8px;font-size:14px;cursor:pointer;font-weight:700;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:all 0.3s;position:relative;overflow:hidden;}
+.btn-p::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:rgba(255,255,255,0.15);transform:skewX(-20deg);transition:left 0.4s;}
+.btn-p:hover{background:var(--blue3);transform:translateY(-3px);}
+.btn-p:hover::after{left:200%;}
+.btn-o{background:transparent;color:var(--blue2);border:1px solid rgba(74,144,217,0.4);padding:13px 28px;border-radius:8px;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:all 0.3s;}
+.btn-o:hover{background:rgba(74,144,217,0.1);transform:translateY(-3px);border-color:var(--blue2);}
+
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border);background:var(--bg2);}
+.stat-item{padding:2rem;text-align:center;border-right:1px solid var(--border);transition:background 0.3s;cursor:default;position:relative;overflow:hidden;}
+.stat-item::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:var(--blue);transform:scaleX(0);transition:transform 0.4s;transform-origin:left;}
+.stat-item:hover::before{transform:scaleX(1);}
+.stat-item:hover{background:var(--blue4);}
+.stat-item:last-child{border-right:none;}
+.stat-num{font-size:32px;font-weight:700;color:var(--blue);}
+.stat-label{font-size:12px;color:var(--text2);margin-top:5px;letter-spacing:0.5px;}
+
+section{padding:4rem 3rem;border-bottom:1px solid var(--border);}
+section:nth-of-type(odd){background:var(--bg2);}
+section:nth-of-type(even){background:var(--bg);}
+.sec-header{display:flex;align-items:center;gap:14px;margin-bottom:2.5rem;}
+.sec-line{flex:1;height:1px;background:var(--border);}
+.sec-badge{background:var(--blue4);color:var(--blue3);font-size:11px;padding:5px 16px;border-radius:20px;border:1px solid rgba(74,144,217,0.25);white-space:nowrap;font-weight:700;letter-spacing:2px;}
+
+.about-grid{display:grid;grid-template-columns:1.3fr 0.7fr;gap:3rem;align-items:start;}
+.about-text{font-size:15px;color:var(--text2);line-height:1.9;}
+.about-highlight{background:var(--blue4);border-left:3px solid var(--blue);padding:1.1rem 1.4rem;border-radius:0 8px 8px 0;margin-top:1.2rem;font-size:14px;color:var(--blue3);line-height:1.8;}
+.insurer-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:1.5rem;}
+.chip{background:var(--blue4);border:1px solid rgba(74,144,217,0.2);color:var(--blue3);font-size:12px;padding:5px 14px;border-radius:20px;font-weight:600;transition:all 0.2s;cursor:default;}
+.chip:hover{background:rgba(74,144,217,0.15);transform:translateY(-2px);}
+
+.skills-cats{display:flex;flex-direction:column;gap:22px;}
+.skill-cat-title{font-size:11px;color:var(--text2);letter-spacing:2px;margin-bottom:10px;text-transform:uppercase;font-weight:700;}
+.skills-row{display:flex;flex-wrap:wrap;gap:8px;}
+.skill-pill{display:inline-flex;align-items:center;gap:7px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;color:var(--text2);transition:all 0.3s;cursor:default;position:relative;overflow:hidden;}
+.skill-pill::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:rgba(74,144,217,0.06);transform:skewX(-20deg);transition:left 0.4s;}
+.skill-pill:hover{border-color:var(--blue);color:var(--blue3);transform:translateY(-3px);}
+.skill-pill:hover::after{left:200%;}
+.skill-pill i{font-size:17px;color:var(--blue);}
+
+.exp-list{display:flex;flex-direction:column;gap:1.5rem;}
+.exp-card{display:flex;gap:1.5rem;align-items:flex-start;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1.5rem;transition:all 0.3s;position:relative;overflow:hidden;}
+.exp-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--blue);transform:scaleY(0);transition:transform 0.4s;transform-origin:top;border-radius:0;}
+.exp-card:hover::before{transform:scaleY(1);}
+.exp-card:hover{border-color:rgba(74,144,217,0.35);transform:translateX(6px);background:var(--blue4);}
+.exp-icon{width:46px;height:46px;background:var(--blue4);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:22px;border:1px solid rgba(74,144,217,0.2);flex-shrink:0;transition:all 0.3s;}
+.exp-card:hover .exp-icon{background:rgba(74,144,217,0.15);transform:rotate(5deg) scale(1.1);}
+.exp-content{flex:1;}
+.exp-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;flex-wrap:wrap;gap:8px;}
+.exp-title{font-size:15px;font-weight:700;color:var(--text);}
+.exp-company{font-size:13px;color:var(--blue);margin-top:2px;font-weight:600;}
+.exp-date{font-size:11px;color:var(--blue3);background:var(--blue4);border:1px solid rgba(74,144,217,0.2);padding:4px 12px;border-radius:20px;white-space:nowrap;font-weight:700;}
+.exp-desc{font-size:13px;color:var(--text2);line-height:1.8;margin:8px 0 12px;}
+.exp-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.etag{background:#0d1b2e;color:var(--blue2);font-size:11px;padding:3px 10px;border-radius:20px;font-weight:600;}
+
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
+.proj-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);}
+.proj-card:hover{border-color:rgba(74,144,217,0.4);transform:translateY(-8px);}
+.proj-card:hover .proj-top::after{left:200%;}
+.proj-card:hover .proj-icon-wrap{transform:rotate(8deg) scale(1.15);}
+.proj-top{background:#0d1b2e;padding:1.5rem;display:flex;align-items:center;gap:14px;position:relative;overflow:hidden;}
+.proj-top::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:rgba(74,144,217,0.08);transform:skewX(-20deg);transition:left 0.5s;}
+.proj-icon-wrap{width:46px;height:46px;background:rgba(74,144,217,0.12);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--blue2);font-size:22px;flex-shrink:0;border:1px solid rgba(74,144,217,0.25);transition:all 0.4s cubic-bezier(0.175,0.885,0.32,1.275);animation:float 3s ease-in-out infinite;}
+.proj-title{font-size:15px;font-weight:700;color:#fff;}
+.proj-subtitle{font-size:12px;color:var(--blue2);opacity:0.7;margin-top:3px;}
+.proj-body{padding:1.4rem;}
+.proj-desc{font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:14px;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+.ptag{background:var(--blue4);color:var(--blue3);font-size:11px;padding:4px 12px;border-radius:20px;border:1px solid rgba(74,144,217,0.2);font-weight:600;}
+.proj-link{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--blue);text-decoration:none;border:1px solid rgba(74,144,217,0.25);padding:5px 14px;border-radius:20px;transition:all 0.2s;font-weight:600;}
+.proj-link:hover{background:var(--blue4);transform:translateX(3px);}
+
+.contact-wrap{display:grid;grid-template-columns:1fr 1.3fr;gap:3rem;align-items:start;}
+.contact-left{display:flex;flex-direction:column;gap:12px;}
+.c-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.4rem;display:flex;align-items:center;gap:14px;transition:all 0.3s;}
+.c-card:hover{border-color:rgba(74,144,217,0.35);transform:translateX(5px);background:var(--blue4);}
+.c-icon{width:42px;height:42px;background:var(--blue4);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:20px;border:1px solid rgba(74,144,217,0.2);flex-shrink:0;transition:all 0.3s;}
+.c-card:hover .c-icon{background:rgba(74,144,217,0.15);transform:scale(1.1) rotate(-5deg);}
+.c-detail{font-size:13px;color:var(--text2);}
+.c-detail strong{display:block;font-size:14px;font-weight:700;color:var(--text);}
+.contact-form{display:flex;flex-direction:column;gap:14px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.contact-form input,.contact-form textarea{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:8px;font-size:14px;background:var(--bg2);color:var(--text);font-family:inherit;transition:border-color 0.3s;outline:none;}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--blue);}
+.contact-form textarea{resize:vertical;min-height:110px;}
+.submit-btn{background:var(--blue);color:#fff;border:none;padding:13px 28px;border-radius:8px;font-size:14px;cursor:pointer;font-weight:700;display:inline-flex;align-items:center;gap:8px;transition:all 0.3s;position:relative;overflow:hidden;}
+.submit-btn::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:rgba(255,255,255,0.15);transform:skewX(-20deg);transition:left 0.4s;}
+.submit-btn:hover{background:var(--blue3);transform:translateY(-3px);}
+.submit-btn:hover::after{left:200%;}
+
+footer{background:#0d1b2e;padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;}
+.footer-logo{font-size:18px;font-weight:700;color:var(--blue2);letter-spacing:3px;}
+.footer-text{font-size:12px;color:rgba(255,255,255,0.35);}
+
+@media(max-width:768px){
+  .hero h1{font-size:36px;}
+  .about-grid,.contact-wrap{grid-template-columns:1fr;}
+  .stats-bar{grid-template-columns:repeat(2,1fr);}
+  .stat-item:nth-child(2){border-right:none;}
+  section{padding:2.5rem 1.5rem;}
+  nav{padding:1rem 1.5rem;}
+  .hero-btns{flex-direction:column;align-items:center;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">&lt;AM /&gt;</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="ring ring1"></div>
+  <div class="ring ring2"></div>
+  <div class="ring ring3"></div>
+  <div class="hero-badge"><span class="badge-dot"></span> Open to opportunities</div>
+  <div class="hero-avatar">AM</div>
+  <h1>Ayushi <span>Mishra</span></h1>
+  <p class="hero-role">PHP Backend Developer &nbsp;·&nbsp; InsurTech &nbsp;·&nbsp; PolicyX.com</p>
+  <div class="hero-tags">
+    <span class="htag"><i class="ti ti-plug-connected"></i> Multi-Insurer API</span>
+    <span class="htag"><i class="ti ti-shield-check"></i> Term Insurance Platform</span>
+    <span class="htag"><i class="ti ti-credit-card"></i> Payment Gateway</span>
+    <span class="htag"><i class="ti ti-database"></i> MySQL Workbench</span>
+    <span class="htag"><i class="ti ti-robot"></i> AI-Assisted Dev</span>
+  </div>
+  <div class="hero-btns">
+    <a href="#contact" class="btn-p"><i class="ti ti-mail"></i> Hire Me</a>
+    <a href="https://www.linkedin.com/in/ayushi-mishra-60926b412" target="_blank" class="btn-o"><i class="ti ti-brand-linkedin"></i> LinkedIn</a>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-item hidden"><div class="stat-num">6+</div><div class="stat-label">Insurers Integrated</div></div>
+  <div class="stat-item hidden"><div class="stat-num">E2E</div><div class="stat-label">Quote to Policy</div></div>
+  <div class="stat-item hidden"><div class="stat-num">100%</div><div class="stat-label">Platform Ownership</div></div>
+  <div class="stat-item hidden"><div class="stat-num">Live</div><div class="stat-label">Production Support</div></div>
+</div>
+
+<section id="about">
+  <div class="sec-header"><div class="sec-line"></div><div class="sec-badge">ABOUT ME</div><div class="sec-line"></div></div>
+  <div class="about-grid">
+    <div class="hidden">
+      <p class="about-text">As a PHP Developer at PolicyX.com, I manage the end-to-end Term Insurance platform — covering multi-insurer API integrations, quote generation, proposal and payment workflows, policy issuance, and ensuring seamless customer journeys from start to finish.</p>
+      <div class="about-highlight">I take complete ownership of the Term Insurance vertical — from writing backend logic and API integrations to frontend validations and live production support.</div>
+      <div class="insurer-chips" style="margin-top:1.2rem;">
+        <span class="chip">Go Digit</span><span class="chip">HDFC Life</span>
+        <span class="chip">ICICI Prudential</span><span class="chip">Bajaj Life</span>
+        <span class="chip">Tata AIA</span><span class="chip">Axis Max</span>
+      </div>
+    </div>
+    <div class="skills-cats hidden" id="skills">
+      <div>
+        <div class="skill-cat-title">Backend</div>
+        <div class="skills-row">
+          <span class="skill-pill"><i class="ti ti-brand-php"></i>PHP</span>
+          <span class="skill-pill"><i class="ti ti-api"></i>REST API</span>
+          <span class="skill-pill"><i class="ti ti-transfer"></i>cURL</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-cat-title">Database</div>
+        <div class="skills-row">
+          <span class="skill-pill"><i class="ti ti-database"></i>MySQL</span>
+          <span class="skill-pill"><i class="ti ti-tool"></i>Workbench</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-cat-title">Frontend</div>
+        <div class="skills-row">
+          <span class="skill-pill"><i class="ti ti-brand-javascript"></i>JavaScript</span>
+          <span class="skill-pill"><i class="ti ti-code"></i>jQuery</span>
+          <span class="skill-pill"><i class="ti ti-refresh"></i>AJAX</span>
+          <span class="skill-pill"><i class="ti ti-check"></i>Validations</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-cat-title">Tools & Domain</div>
+        <div class="skills-row">
+          <span class="skill-pill"><i class="ti ti-brand-git"></i>Git</span>
+          <span class="skill-pill"><i class="ti ti-api"></i>Postman</span>
+          <span class="skill-pill"><i class="ti ti-server"></i>FileZilla</span>
+          <span class="skill-pill"><i class="ti ti-robot"></i>Claude AI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="sec-header"><div class="sec-line"></div><div class="sec-badge">EXPERIENCE</div><div class="sec-line"></div></div>
+  <div class="exp-list">
+    <div class="exp-card hidden">
+      <div class="exp-icon"><i class="ti ti-briefcase"></i></div>
+      <div class="exp-content">
+        <div class="exp-header">
+          <div><div class="exp-title">PHP Backend Developer</div><div class="exp-company">PolicyX.com &nbsp;·&nbsp; Gurugram</div></div>
+          <div class="exp-date">Sept 2025 – Present</div>
+        </div>
+        <p class="exp-desc">Managing the complete Term Insurance backend — multi-insurer API integrations, quote generation, proposal creation, payment gateway, and policy issuance across 6+ insurers. Handle frontend & backend validations, production debugging, and direct coordination with insurer API teams for UAT and go-lives.</p>
+        <div class="exp-tags">
+          <span class="etag">Go Digit</span><span class="etag">HDFC</span><span class="etag">ICICI</span>
+          <span class="etag">Bajaj</span><span class="etag">Tata AIA</span><span class="etag">Axis Max</span>
+        </div>
+      </div>
+    </div>
+    <div class="exp-card hidden">
+      <div class="exp-icon"><i class="ti ti-code"></i></div>
+      <div class="exp-content">
+        <div class="exp-header">
+          <div><div class="exp-title">Web Development Intern</div><div class="exp-company">Utsav Foundation &nbsp;·&nbsp; Gurugram</div></div>
+          <div class="exp-date">Jan 2024 – Jul 2024</div>
+        </div>
+        <p class="exp-desc">Built full-stack NGO website and VISION Program Web App using PHP, MySQL & JavaScript. Implemented secure authentication, RESTful APIs, role-based access control, admin dashboards, and deployed via Hostinger.</p>
+        <div class="exp-tags">
+          <span class="etag">PHP</span><span class="etag">MySQL</span><span class="etag">JavaScript</span>
+          <span class="etag">REST API</span><span class="etag">RBAC</span><span class="etag">Hostinger</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="sec-header"><div class="sec-line"></div><div class="sec-badge">PROJECTS</div><div class="sec-line"></div></div>
+  <div class="projects-grid">
+    <div class="proj-card hidden">
+      <div class="proj-top">
+        <div class="proj-icon-wrap"><i class="ti ti-bulb"></i></div>
+        <div><div class="proj-title">VISION Program Web App</div><div class="proj-subtitle">Multi-role innovation portal</div></div>
+      </div>
+      <div class="proj-body">
+        <p class="proj-desc">Student innovation portal with RBAC, project submission, selection, sponsorship & mentorship workflows. Integrated RESTful APIs, MySQL, and mobile-first responsive UI.</p>
+        <div class="proj-tags"><span class="ptag">PHP</span><span class="ptag">MySQL</span><span class="ptag">RBAC</span><span class="ptag">REST API</span></div>
+        <a href="https://viksitbharatinnovation.com" target="_blank" class="proj-link"><i class="ti ti-external-link"></i> viksitbharatinnovation.com</a>
+      </div>
+    </div>
+    <div class="proj-card hidden">
+      <div class="proj-top">
+        <div class="proj-icon-wrap" style="animation-delay:1.5s;"><i class="ti ti-heart-handshake"></i></div>
+        <div><div class="proj-title">Utsav Foundation Website</div><div class="proj-subtitle">NGO management platform</div></div>
+      </div>
+      <div class="proj-body">
+        <p class="proj-desc">Full-stack NGO campaign and donation management platform with secure session-based auth, admin dashboards, form handling, and production deployment via Hostinger.</p>
+        <div class="proj-tags"><span class="ptag">PHP</span><span class="ptag">MySQL</span><span class="ptag">Session Auth</span><span class="ptag">Hostinger</span></div>
+        <a href="https://utsavfoundation.org" target="_blank" class="proj-link"><i class="ti ti-external-link"></i> utsavfoundation.org</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="sec-header"><div class="sec-line"></div><div class="sec-badge">CONTACT</div><div class="sec-line"></div></div>
+  <div class="contact-wrap">
+    <div class="contact-left">
+      <div class="c-card hidden"><div class="c-icon"><i class="ti ti-mail"></i></div><div class="c-detail"><strong>Email</strong>ayushitmishra@gmail.com</div></div>
+      <div class="c-card hidden"><div class="c-icon"><i class="ti ti-map-pin"></i></div><div class="c-detail"><strong>Location</strong>Gurugram, Sector 33, Haryana</div></div>
+      <div class="c-card hidden"><div class="c-icon"><i class="ti ti-brand-linkedin"></i></div><div class="c-detail"><strong>LinkedIn</strong>linkedin.com/in/ayushi-mishra-60926b412</div></div>
+      <div class="c-card hidden"><div class="c-icon"><i class="ti ti-globe"></i></div><div class="c-detail"><strong>Portfolio</strong>ayushipmishra27-ctrl.github.io</div></div>
+    </div>
+    <div class="contact-form hidden">
+      <div class="form-row">
+        <input type="text" placeholder="Your name"/>
+        <input type="email" placeholder="Your email"/>
+      </div>
+      <input type="text" placeholder="Subject"/>
+      <textarea placeholder="Your message..."></textarea>
+      <button class="submit-btn"><i class="ti ti-send"></i> Send message</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">&lt;AM /&gt;</div>
+  <div class="footer-text">© 2026 Ayushi Mishra · PHP Developer · InsurTech</div>
+</footer>
+
+<script>
+const hero=document.querySelector('.hero');
+for(let i=0;i<20;i++){
+  const p=document.createElement('div');
+  p.className='particle';
+  p.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;width:${Math.random()*3+1}px;height:${Math.random()*3+1}px;animation-duration:${Math.random()*7+5}s;animation-delay:${Math.random()*5}s;`;
+  hero.appendChild(p);
+}
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const el=entry.target;
+      setTimeout(()=>{el.classList.remove('hidden');el.classList.add('reveal');},parseFloat(el.dataset.delay||0));
+      observer.unobserve(el);
+    }
+  });
+},{threshold:0.12});
+document.querySelectorAll('.hidden').forEach((el,i)=>{el.dataset.delay=(i%5)*120;observer.observe(el);});
+const so=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.animation='countBounce 0.6s ease forwards';so.unobserve(e.target);}});},{threshold:0.5});
+document.querySelectorAll('.stat-num').forEach(el=>so.observe(el));
+document.querySelectorAll('.skill-pill').forEach((el,i)=>{el.style.transitionDelay=(i*40)+'ms';});
+</script>
+</body>
+</html>
